@@ -10,9 +10,14 @@ from slack_sdk.errors import SlackApiError
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 
-slack_token = os.environ['SLACK_TOKEN']  
-channel_id = os.environ['CHANNEL_ID']
-dynamodb_table = os.environ['DYNAMODB_TABLE']
+#slack_token = os.environ['SLACK_TOKEN']  
+#channel_id = os.environ['CHANNEL_ID']
+#dynamodb_table = os.environ['DYNAMODB_TABLE']
+
+slack_token = 'xoxb-6172684555202-6318593180979-lnvV7GpSE5EfPFWlzGAqOvup'
+channel_id = 'C065F9KTS65'
+dynamodb_table = 'uwf-monitoring-alerts-log'
+
 
 def lambda_handler(event, context):
     try:    
@@ -26,7 +31,7 @@ def lambda_handler(event, context):
 
         insert_into_dynamodb(cleaned_data)
 
-        send_confirmation_to_slack(log_id)
+        #send_confirmation_to_slack(log_id)
         logger.info(f"Message processed and logged with LogID: {log_id}")
     except Exception as e:
         logger.error(f"Error in lambda_handler: {str(e)}")
@@ -71,6 +76,8 @@ def insert_into_dynamodb(data):
         logger.error(f"Error inserting data into DynamoDB: {str(e)}")
         raise
 
+
+'''
 def send_confirmation_to_slack(log_id):
     client = WebClient(token=slack_token)
     confirmation_message = f"Error logged successfully under LogID {log_id}"
@@ -83,3 +90,4 @@ def send_confirmation_to_slack(log_id):
     except SlackApiError as e:
         logger.error(f"Error sending message to Slack: {e.response['error']}")
         raise
+'''
