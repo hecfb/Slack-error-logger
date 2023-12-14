@@ -14,10 +14,6 @@ logger = logging.getLogger()
 #channel_id = os.environ['CHANNEL_ID']
 #dynamodb_table = os.environ['DYNAMODB_TABLE']
 
-slack_token = 'xoxb-6172684555202-6318593180979-lnvV7GpSE5EfPFWlzGAqOvup'
-channel_id = 'C065F9KTS65'
-dynamodb_table = 'uwf-monitoring-alerts-log'
-
 
 def lambda_handler(event, context):
     try:    
